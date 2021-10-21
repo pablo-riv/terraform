@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-2"
+  region = var.region
 }
 
 resource "aws_instance" "instance" {
@@ -13,7 +13,8 @@ resource "aws_instance" "instance" {
 
   tags = {
     Terraform   = "true"
-    Name = var.app_name
+    Name = "${var.app_name}-${var.environment}"
+    Environment = var.environment
   }
 }
 
